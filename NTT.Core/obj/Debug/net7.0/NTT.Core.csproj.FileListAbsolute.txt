@@ -1,0 +1,12 @@
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/bin/Debug/net7.0/NTT.Core.deps.json
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/bin/Debug/net7.0/NTT.Core.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/bin/Debug/net7.0/NTT.Core.pdb
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.csproj.AssemblyReference.cache
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.AssemblyInfoInputs.cache
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.AssemblyInfo.cs
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.csproj.CoreCompileInputs.cache
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/refint/NTT.Core.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.pdb
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/ref/NTT.Core.dll

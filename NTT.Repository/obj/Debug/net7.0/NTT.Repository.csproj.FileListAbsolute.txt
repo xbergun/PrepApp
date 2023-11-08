@@ -1,0 +1,17 @@
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/bin/Debug/net7.0/NTT.Repository.deps.json
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/bin/Debug/net7.0/NTT.Repository.runtimeconfig.json
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/bin/Debug/net7.0/NTT.Repository.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/bin/Debug/net7.0/NTT.Repository.pdb
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/bin/Debug/net7.0/NTT.Core.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/bin/Debug/net7.0/NTT.Core.pdb
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.csproj.AssemblyReference.cache
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.GeneratedMSBuildEditorConfig.editorconfig
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.AssemblyInfoInputs.cache
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.AssemblyInfo.cs
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.csproj.CoreCompileInputs.cache
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.csproj.CopyComplete
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/refint/NTT.Repository.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.pdb
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/NTT.Repository.genruntimeconfig.cache
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/obj/Debug/net7.0/ref/NTT.Repository.dll
