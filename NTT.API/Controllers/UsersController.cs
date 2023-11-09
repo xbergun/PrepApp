@@ -11,18 +11,21 @@ namespace NTT.API.Controllers
     public class UsersController : BaseController
     {
         private readonly IMapper _mapper;
-        private readonly IService<User> _userService;
+        private readonly IService<User> _service;
+        private readonly IUserService _userService;
 
-        public UsersController(IMapper mapper, IService<User> userService)
+        public UsersController(IMapper mapper, IService<User> service, IUserService userService2)
         {
             _mapper = mapper;
-            _userService = userService;
+            _service = service;
+            _userService = userService2;
         }
+        
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-           var users= await _userService.GetAllAsync();
+           var users= await _service.GetAllAsync();
            
            var userDto = _mapper.Map<List<UserDto>>(users.ToList());
            
@@ -33,7 +36,7 @@ namespace NTT.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var user = await _userService.GetByIdAsync(id);
+            var user = await _service.GetByIdAsync(id);
             
             var userDto = _mapper.Map<UserDto>(user);
             
@@ -43,7 +46,7 @@ namespace NTT.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Save(UserDto userDto)
         {
-            var newUser = await _userService.AddAsync(_mapper.Map<User>(userDto));
+            var newUser = await _service.AddAsync(_mapper.Map<User>(userDto));
             
             var newUserDto = _mapper.Map<UserDto>(newUser);
             
@@ -53,7 +56,7 @@ namespace NTT.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(UserDto userDto)
         {
-            await  _userService.Update(_mapper.Map<User>(userDto));
+            await  _service.Update(_mapper.Map<User>(userDto));
             
             return CreateActionResult(CustomResponseDto<UserDto>.Success(200));
         }
@@ -61,11 +64,21 @@ namespace NTT.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)
         {
-            var user = await _userService.GetByIdAsync(id);
+            var user = await _service.GetByIdAsync(id);
             
-            await _userService.Remove(user);
+            await _service.Remove(user);
             
             return CreateActionResult(CustomResponseDto<UserDto>.Success(200));
+        }
+        
+        [HttpGet("GetUserWithUserRoles")]
+        public async Task<IActionResult> GetUserWithUserRoles()
+        {
+            var users = await _userService.GetUserWithUserRolesAsync();
+            
+            var userDto = _mapper.Map<List<UserWithUserRoleDto>>(users.ToList());
+            
+            return CreateActionResult(CustomResponseDto<List<UserWithUserRoleDto>>.Success(200,userDto));
         }
     }
 }

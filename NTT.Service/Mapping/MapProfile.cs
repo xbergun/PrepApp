@@ -11,5 +11,6 @@ public class MapProfile : Profile
         CreateMap<User, UserDto>().ReverseMap();
         CreateMap<UserRole, UserRoleDto>().ReverseMap();
         CreateMap<TelephoneNumber, TelephoneNumberDto>().ReverseMap();
+        CreateMap<UserWithUserRoleDto, User>().ReverseMap();
     }
 }
