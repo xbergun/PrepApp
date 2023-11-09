@@ -10,7 +10,6 @@ public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
     {
         builder.HasKey(ur => ur.Id);
         builder.Property(ur => ur.Id).UseIdentityColumn(); //1,1 auto increment
-        builder.Property(ur => ur.RoleType).IsRequired().HasMaxLength(50);
 
         builder.HasOne(ur => ur.User).WithMany(ur => ur.UserRoles).HasForeignKey(u => u.UserId).IsRequired();
     }

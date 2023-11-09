@@ -9,23 +9,24 @@ using NTT.Core.UnitOfWorks;
 
 namespace NTT.Service.Services;
 
-public class UserService : Service<User>, IUserService
+public class UserWithUserRolesService : Service<User>, IUserWithUserRolesService
 {
     private readonly IUserWithUserRolesRepository _rolesRepository;
+    private readonly IUserWithTelephoneNumbersRepository _telephoneNumbersRepository;
     private readonly IMapper _mapper;
 
-    public UserService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IUserWithUserRolesRepository rolesRepository, IMapper mapper) : base(repository, unitOfWork)
+    public UserWithUserRolesService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IUserWithUserRolesRepository rolesRepository, IUserWithTelephoneNumbersRepository telephoneNumbersRepository, IMapper mapper) : base(repository, unitOfWork)
     {
         _rolesRepository = rolesRepository;
+        _telephoneNumbersRepository = telephoneNumbersRepository;
         _mapper = mapper;
     }
-    
 
     public async Task<List<User>> GetUserWithUserRolesAsync()
     {
         var users = await _rolesRepository.GetUserWithUserRolesAsync();
         return users;
-
-
     }
+
+    
 }

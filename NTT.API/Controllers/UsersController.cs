@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NTT.API.Controllers.Base;
+using NTT.API.Filters;
 using NTT.Core.DTOs;
 using NTT.Core.DTOs.Custom;
 using NTT.Core.Entity;
@@ -12,13 +13,13 @@ namespace NTT.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IService<User> _service;
-        private readonly IUserService _userService;
+       
+       
 
-        public UsersController(IMapper mapper, IService<User> service, IUserService userService2)
+        public UsersController(IMapper mapper, IService<User> service)
         {
             _mapper = mapper;
             _service = service;
-            _userService = userService2;
         }
         
 
@@ -71,14 +72,7 @@ namespace NTT.API.Controllers
             return CreateActionResult(CustomResponseDto<UserDto>.Success(200));
         }
         
-        [HttpGet("GetUserWithUserRoles")]
-        public async Task<IActionResult> GetUserWithUserRoles()
-        {
-            var users = await _userService.GetUserWithUserRolesAsync();
-            
-            var userDto = _mapper.Map<List<UserWithUserRoleDto>>(users.ToList());
-            
-            return CreateActionResult(CustomResponseDto<List<UserWithUserRoleDto>>.Success(200,userDto));
-        }
+     
+       
     }
 }

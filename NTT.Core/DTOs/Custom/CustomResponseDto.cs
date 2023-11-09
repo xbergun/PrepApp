@@ -33,14 +33,16 @@ public class CustomResponseDto<T>
         };
     }
     
-    public static CustomResponseDto<T> Error(int statusCode, string message)
+    public static CustomResponseDto<T> Error(int statusCode, T Data)
     {
         return new CustomResponseDto<T>
         {
+            Data = Data,
             StatusCode = statusCode,
-            Message = message
+            Message = "Error"
         };
     }
+    
     
     public static CustomResponseDto<T> NoContent(int statusCode)
     {

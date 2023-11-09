@@ -10,7 +10,6 @@ public class TelephoneNumberConfiguration : IEntityTypeConfiguration<TelephoneNu
     {
         builder.HasKey(t => t.Id);
         builder.Property(t => t.Id).UseIdentityColumn(); //1,1 auto increment
-        builder.Property(t => t.TelNo).IsRequired().HasMaxLength(11);
         
         builder.HasOne(t => t.User).WithMany(t => t.TelephoneNumbers).HasForeignKey(t => t.UserId).IsRequired();
     }

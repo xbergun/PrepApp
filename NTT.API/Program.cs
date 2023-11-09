@@ -4,7 +4,10 @@
 // API => Presentation Layer
 
 using System.Reflection;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NTT.API.Filters;
 using NTT.Core.Repositories;
 using NTT.Core.Services;
 using NTT.Core.UnitOfWorks;
@@ -13,10 +16,18 @@ using NTT.Repository.Repositories;
 using NTT.Repository.UnitOfWorks;
 using NTT.Service.Mapping;
 using NTT.Service.Services;
+using NTT.Service.Validations;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllers(options =>  options.Filters.Add(new ValidateFilterAttribute())).AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<UserDtoValidator>()); // Fluent Validation
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -28,7 +39,10 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 
 builder.Services.AddScoped<IUserWithUserRolesRepository, UserWithUserRolesRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserWithUserRolesService, UserWithUserRolesService>();
+
+builder.Services.AddScoped<IUserWithTelephoneNumbersRepository, UserWithTelephoneNumbersRepository>();
+builder.Services.AddScoped<IUserWithTelephoneNumbersService, UserWithTelephoneNumbersService>();
 
 builder.Services.AddAutoMapper(typeof(MapProfile));
 

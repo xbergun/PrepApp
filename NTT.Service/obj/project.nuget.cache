@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "suswZjUgBowkSz0J27FZNM0i8zimmVz/jRRwPtPSYB8t/62vy4sy545vjz+2bcfgk3XFTITvAgRTstUHhYjGgg==",
+  "dgSpecHash": "PlSyTQXDId/3BjrPELQZ+QwcQvTQWWLnFAI2w9Qj49dlUyBt2CHmV3+wjnOCuDzpPD6iQM+dY5ChqZR3aTILgw==",
   "success": true,
   "projectFilePath": "/Users/berkayergun/RiderProjects/PrepApp/NTT.Service/NTT.Service.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,9 @@
     "/Users/berkayergun/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/microsoft.data.sqlclient/5.1.1/microsoft.data.sqlclient.5.1.1.nupkg.sha512",
