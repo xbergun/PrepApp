@@ -1,8 +1,8 @@
-using NTT.Core.DTOs.Base;
+
 
 namespace NTT.Core.DTOs;
 
-public class TelephoneNumberDto : BaseDto
+public class TelephoneNumberDto
 {
     public string? TelNo { get; set; }
  

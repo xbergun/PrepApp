@@ -1,7 +1,5 @@
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
 using NTT.Core.DTOs;
-using NTT.Core.DTOs.Custom;
 using NTT.Core.Entity;
 using NTT.Core.Repositories;
 using NTT.Core.Services;
@@ -12,15 +10,16 @@ namespace NTT.Service.Services;
 public class UserWithUserRolesService : Service<User>, IUserWithUserRolesService
 {
     private readonly IUserWithUserRolesRepository _rolesRepository;
-    private readonly IUserWithTelephoneNumbersRepository _telephoneNumbersRepository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public UserWithUserRolesService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IUserWithUserRolesRepository rolesRepository, IUserWithTelephoneNumbersRepository telephoneNumbersRepository, IMapper mapper) : base(repository, unitOfWork)
+    public UserWithUserRolesService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IUserWithUserRolesRepository rolesRepository, IMapper mapper) : base(repository, unitOfWork)
     {
         _rolesRepository = rolesRepository;
-        _telephoneNumbersRepository = telephoneNumbersRepository;
+        _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
+
 
     public async Task<List<User>> GetUserWithUserRolesAsync()
     {
@@ -28,5 +27,16 @@ public class UserWithUserRolesService : Service<User>, IUserWithUserRolesService
         return users;
     }
 
-    
+    public async Task<User?> GetUserWithUserRolesByIdAsync(int userId)
+    {
+        var user = await _rolesRepository.GetUserWithUserRolesByIdAsync(userId);
+        return user;
+    }
+
+    public async Task<CreateUserWithUserRoleDto> AddUserWithUserRolesAsync(CreateUserWithUserRoleDto createUserWithUserRoleDto)
+    {
+        var userEntity = _mapper.Map<User>(createUserWithUserRoleDto);
+        await _rolesRepository.AddUserWithUserRolesAsync(userEntity);
+        return createUserWithUserRoleDto;
+    }
 }
