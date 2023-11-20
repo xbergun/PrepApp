@@ -19,11 +19,11 @@ public class UserDtoValidator : AbstractValidator<UserDto>
         RuleFor(user => user.Email)
             .NotEmpty().WithMessage("Email is required")
             .MaximumLength(100).WithMessage("Email cannot be longer than 100 characters")
-            .Matches(@"^(.+)@(.+)$").WithMessage("Invalid email format");
+            .EmailAddress().WithMessage("Not Valid Email Address");
 
         RuleFor(user => user.TcNo)
             .NotEmpty().WithMessage("TC number is required")
             .Length(11).WithMessage("TC number must be 11 characters")
-            .Matches(@"^[0-9]*$").WithMessage("Invalid TC number format");
+            .Matches(@"^[0-11]*$").WithMessage("Invalid TC number format");
     }
 }

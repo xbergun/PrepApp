@@ -5,11 +5,11 @@ using NTT.Core.UnitOfWorks;
 
 namespace NTT.Service.Services;
 
-public class UserWithTelephoneNumbersService : Service<User>, IUserWithTelephoneNumbersService
+public class UserWithTelephoneNumbersService :  IUserWithTelephoneNumbersService
 {
     private readonly IUserWithTelephoneNumbersRepository _telephoneNumbersRepository;
 
-    public UserWithTelephoneNumbersService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IUserWithTelephoneNumbersRepository telephoneNumbersRepository) : base(repository, unitOfWork)
+    public UserWithTelephoneNumbersService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IUserWithTelephoneNumbersRepository telephoneNumbersRepository) 
     {
         _telephoneNumbersRepository = telephoneNumbersRepository;
     }

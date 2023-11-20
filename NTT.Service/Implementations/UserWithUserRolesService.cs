@@ -7,13 +7,13 @@ using NTT.Core.UnitOfWorks;
 
 namespace NTT.Service.Services;
 
-public class UserWithUserRolesService : Service<User>, IUserWithUserRolesService
+public class UserWithUserRolesService : IUserWithUserRolesService
 {
     private readonly IUserWithUserRolesRepository _rolesRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public UserWithUserRolesService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IUserWithUserRolesRepository rolesRepository, IMapper mapper) : base(repository, unitOfWork)
+    public UserWithUserRolesService(IGenericRepository<User> repository, IUnitOfWork unitOfWork, IUserWithUserRolesRepository rolesRepository, IMapper mapper)
     {
         _rolesRepository = rolesRepository;
         _unitOfWork = unitOfWork;

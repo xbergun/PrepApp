@@ -3,7 +3,7 @@ using NTT.Core.Entity;
 
 namespace NTT.Core.Services;
 
-public interface IUserWithUserRolesService : IService<User>
+public interface IUserWithUserRolesService
 {
   Task<List<User>> GetUserWithUserRolesAsync();
   

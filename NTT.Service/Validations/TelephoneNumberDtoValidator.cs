@@ -9,7 +9,7 @@ public class TelephoneNumberDtoValidator : AbstractValidator<TelephoneNumberDto>
     {
         RuleFor(user => user.TelNo)
             .NotEmpty().WithMessage("Phone number is required")
-            .Matches(@"^[0-9]*$").WithMessage("Invalid phone number format");
+            .Matches(@"^[0-11]*$").WithMessage("Invalid phone number format");
 
     }
 }

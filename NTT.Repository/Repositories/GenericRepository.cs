@@ -23,7 +23,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public IQueryable<T> GetAll()
     {
-        return _dbSet.AsNoTracking().AsQueryable();
+        return _dbSet.AsNoTracking();
     }
     
 

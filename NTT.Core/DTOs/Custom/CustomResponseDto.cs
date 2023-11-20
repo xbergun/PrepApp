@@ -1,10 +1,6 @@
 using System.Text.Json.Serialization;
-using NTT.Core.Enum;
-
 namespace NTT.Core.DTOs.Custom;
 
-
-//Response olarak tek model dönmek istiyorum. Response success de olsa fail de olsa tek model döneceğim.
 public class CustomResponseDto<T>
 {
     public T Data { get; set; } = default!;
@@ -14,20 +10,11 @@ public class CustomResponseDto<T>
 
     public string Message { get; set; } = null!;
     
-    public static CustomResponseDto<T> Success(int statusCode, T data)
+    public static CustomResponseDto<T> Success(int statusCode, T? data = default)
     {
         return new CustomResponseDto<T>
         {
             Data = data,
-            StatusCode = statusCode,
-            Message = "Success"
-        };
-    }
-    
-    public static CustomResponseDto<T> Success(int statusCode)
-    {
-        return new CustomResponseDto<T>
-        {
             StatusCode = statusCode,
             Message = "Success"
         };
@@ -48,7 +35,7 @@ public class CustomResponseDto<T>
     {
         return new CustomResponseDto<T>
         {
-           
+            
         };
     }
 }
