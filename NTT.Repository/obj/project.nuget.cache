@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "h1x7Dcx+6c3TzjSlrMuB83qk27UVDlJGQOar3BzNH9uNwmETgcjol8AI88XGRXlZEqHps2+hb3SSRqg2/k1hJQ==",
+  "dgSpecHash": "O1UWjXnndgsCbVXWUUwa0tEmNLC+sCu2l3BWo5mAhaKYhiu6O0QqV4qs172kYsnYh3GQyX1eJSwBTun7azC2cg==",
   "success": true,
   "projectFilePath": "/Users/berkayergun/RiderProjects/PrepApp/NTT.Repository/NTT.Repository.csproj",
   "expectedPackageFiles": [
     "/Users/berkayergun/.nuget/packages/azure.core/1.25.0/azure.core.1.25.0.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/azure.identity/1.7.0/azure.identity.1.7.0.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/microsoft.csharp/4.5.0/microsoft.csharp.4.5.0.nupkg.sha512",

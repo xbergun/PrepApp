@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 namespace NTT.Core.DTOs.Custom;
 
-public class CustomResponseDto<T>
+public class CustomResponseModel<T>
 {
     public T Data { get; set; } = default!;
 
@@ -10,9 +10,9 @@ public class CustomResponseDto<T>
 
     public string Message { get; set; } = null!;
     
-    public static CustomResponseDto<T> Success(int statusCode, T? data = default)
+    public static CustomResponseModel<T> Success(int statusCode, T data)
     {
-        return new CustomResponseDto<T>
+        return new CustomResponseModel<T>
         {
             Data = data,
             StatusCode = statusCode,
@@ -20,9 +20,9 @@ public class CustomResponseDto<T>
         };
     }
     
-    public static CustomResponseDto<T> Error(int statusCode, T Data)
+    public static CustomResponseModel<T> Error(int statusCode, T Data)
     {
-        return new CustomResponseDto<T>
+        return new CustomResponseModel<T>
         {
             Data = Data,
             StatusCode = statusCode,
@@ -31,9 +31,9 @@ public class CustomResponseDto<T>
     }
     
     
-    public static CustomResponseDto<T> NoContent(int statusCode)
+    public static CustomResponseModel<T> NoContent(int statusCode)
     {
-        return new CustomResponseDto<T>
+        return new CustomResponseModel<T>
         {
             
         };

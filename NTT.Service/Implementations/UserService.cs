@@ -22,7 +22,8 @@ public class UserService : IUserService
     public async Task<UserResponse> UpdateAsync(UserUpdateRequest request)
     {
         //TODO: AUTH VALidation
-        //TODO: Model Validation
+        UserUpdateRequestValidator validator = new();
+        await validator.ValidateAsync(request);
         //TODO: Business Validation
         
         var user = await _repository.GetByIdAsync(request.Id);
@@ -42,6 +43,9 @@ public class UserService : IUserService
 
     public async Task<bool> DeleteAsync(UserDeleteRequest request)
     {
+        UserDeleteRequestValidator validator = new();
+        await validator.ValidateAsync(request);
+        
         var user = await _repository.GetByIdAsync(request.Id);
 
         _repository.Remove(user);
@@ -53,6 +57,10 @@ public class UserService : IUserService
 
     public async Task<UserResponse> CreateAsync(UserCreateRequest request)
     {
+        //Validator
+        UserCreateRequestValidator validator = new();
+        await validator.ValidateAsync(request);
+        
         var user = request.ToEntity();
 
         await _repository.AddAsync(user);
@@ -78,6 +86,9 @@ public class UserService : IUserService
 
     public async Task<UserResponse> GetByIdAsync(UserGetByIdRequest request)
     {
+        UserGetByIdRequestValidator validator = new();
+        await validator.ValidateAsync(request);
+        
         var user = await _repository.GetByIdAsync(request.Id);
         return new UserResponse(user);
     }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "nHko3TLo8opQoOGaoiVE6pO0dHXnbwUZGnOaLbaH9OUTNmQHrnAzebvCru6fROB5SStDmxHmQEk/YdXp5IlDug==",
+  "dgSpecHash": "87894uAwRcYHyP4Y4AR9xYAXa0LzWkDAVEEdn9Jcwk9Ta+XCoLEhQ716hA7/aWj3j1d1Thcb5twoTQPckUq0JQ==",
   "success": true,
   "projectFilePath": "/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/NTT.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/berkayergun/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,11 +1,12 @@
 using FluentValidation;
 using NTT.Core.DTOs;
+using NTT.Service.Models.Users;
 
 namespace NTT.Service.Validations;
 
-public class UserDtoValidator : AbstractValidator<UserDto>
+public class UserModelValidator : AbstractValidator<UserResponse>
 {
-    public UserDtoValidator()
+    public UserModelValidator()
     {
         RuleFor(user => user.FirstName)
             .NotEmpty().WithMessage("First name is required")

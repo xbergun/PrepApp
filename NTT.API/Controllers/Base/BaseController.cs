@@ -9,15 +9,15 @@ namespace NTT.API.Controllers.Base;
 public class BaseController : ControllerBase
 {
     [NonAction]
-    public IActionResult CreateActionResult<T>(CustomResponseDto<T> responseDto)
+    public IActionResult CreateActionResult<T>(CustomResponseModel<T> responseModel)
     {
-       return responseDto.StatusCode switch
+       return responseModel.StatusCode switch
        {
-              (int)StatusCodeEnum.Success => Ok(responseDto),
-              (int)StatusCodeEnum.BadRequest => BadRequest(responseDto),
+              (int)StatusCodeEnum.Success => Ok(responseModel),
+              (int)StatusCodeEnum.BadRequest => BadRequest(responseModel),
               (int)StatusCodeEnum.NoContent => NoContent(),
-              (int)StatusCodeEnum.Created => Created("", responseDto),
-              _ => BadRequest(responseDto)
+              (int)StatusCodeEnum.Created => Created("", responseModel),
+              _ => BadRequest(responseModel)
          };
        }
 
