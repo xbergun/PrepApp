@@ -23,7 +23,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public IQueryable<T> GetAll()
     {
-        return _dbSet.AsNoTracking().AsQueryable();
+        return _dbSet.AsNoTracking();
     }
     
 
@@ -31,7 +31,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         return _dbSet.Where(expression);
     }
-
+    
+    public async Task<List<TType>> WhereWithSelect<TType>(Expression<Func<T, bool>> where,
+        Expression<Func<T, TType>> select)
+    {
+        return await _dbSet.Where(where).Select(select).ToListAsync();
+    }
     public async Task AddAsync(T entity)
     {
         await _dbSet.AddAsync(entity);

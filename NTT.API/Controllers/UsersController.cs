@@ -1,69 +1,61 @@
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using NTT.API.Controllers.Base;
-using NTT.Core.DTOs;
 using NTT.Core.DTOs.Custom;
-using NTT.Core.Entity;
-using NTT.Core.Services;
+using NTT.Service.Abstractions;
+using NTT.Service.Models.Users;
 
 namespace NTT.API.Controllers
 {
     public class UsersController : BaseController
     {
-        private readonly IMapper _mapper;
-        private readonly IService<User> _service;
+      
+        private readonly IUserService _userService;
 
-        public UsersController(IMapper mapper, IService<User> service)
+        public UsersController(IUserService userService)
         {
-            _mapper = mapper;
-            _service = service;
+            _userService = userService;
         }
+
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var users = await _service.GetAllAsync();
-
-            var userDto = _mapper.Map<List<UserDto>>(users.ToList());
-
-            return CreateActionResult(CustomResponseDto<List<UserDto>>.Success(200, userDto));
+            var users = await _userService.GetAllAsync();
+            
+            return CreateActionResult(CustomResponseModel<List<UserResponse>>.Success(200, users));
         }
-
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute]UserGetByIdRequest request)
         {
-            var user = await _service.GetByIdAsync(id);
+            var user = await _userService.GetByIdAsync(request);
 
-            var userDto = _mapper.Map<UserDto>(user);
-
-            return CreateActionResult(CustomResponseDto<UserDto>.Success(200, userDto));
+            return CreateActionResult(CustomResponseModel<UserResponse>.Success(200, user));
         }
-
+        
         [HttpPost]
-        public async Task<IActionResult> Save(CreateUserDto createUserDto)
+        public async Task<IActionResult> AddUser(UserCreateRequest request)
         {
-            var newUser = await _service.AddAsync(_mapper.Map<User>(createUserDto));
-
-            var newUserDto = _mapper.Map<UserDto>(newUser);
-
-            return CreateActionResult(CustomResponseDto<UserDto>.Success(201, newUserDto));
+            var newUser = await _userService.CreateAsync(request);
+            return CreateActionResult(CustomResponseModel<UserResponse>.Success(201, newUser));
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateUserDto updateUserDto)
+        public async Task<IActionResult> Update(UserUpdateRequest request)
         {
-              await _service.Update(_mapper.Map<User>(updateUserDto));
+            var newUser = await _userService.UpdateAsync(request);
 
-            return CreateActionResult(CustomResponseDto<UpdateUserDto>.Success(200, updateUserDto));
+            return CreateActionResult(CustomResponseModel<UserResponse>.Success(200, newUser));
         }
+        
+        [HttpDelete]
+        public async Task<IActionResult> DeleteUser(UserDeleteRequest request)
+        { 
+          var isDeleted = await _userService.DeleteAsync(request);
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove(int id)
-        {
-            var user = await _service.GetByIdAsync(id);
-            await _service.Remove(user);
-
-            return CreateActionResult(CustomResponseDto<DeleteUserDto>.Success(200, new DeleteUserDto()));
+        return CreateActionResult(CustomResponseModel<bool>.Success(200,isDeleted));
         }
+        
     }
+    
 }

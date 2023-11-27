@@ -2610,6 +2610,9 @@
         }
       },
       "NTT.Core/1.0.0": {
+        "dependencies": {
+          "FluentValidation": "11.5.1"
+        },
         "runtime": {
           "NTT.Core.dll": {}
         }
