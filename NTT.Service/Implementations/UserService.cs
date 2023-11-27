@@ -93,4 +93,11 @@ public class UserService : IUserService
         return new UserResponse(user);
     }
     
+    
+    private async Task ValidateBusinessCreateUser()
+    {
+        
+    }
+    
+    
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vq0sVaGF7dBgz6CMU7T6aVD0aRjbFTGfOc8lVvFzbhcsdG3LpgaRcD9pi2UaACaNiJnZa+ZWeGZjfgR2F8wqQQ==",
+  "dgSpecHash": "KFUaOsobvsFyd0DvEsvFpHATZfy9sF7gYnXY/beQ8gxwG8fY9o97bhNdUUtpZ87SYqk3duPRtmKrucAjVnTkEg==",
   "success": true,
   "projectFilePath": "/Users/berkayergun/RiderProjects/PrepApp/NTT.API/NTT.API.csproj",
   "expectedPackageFiles": [
@@ -237,7 +237,10 @@
     "/Users/berkayergun/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/system.windows.extensions/6.0.0/system.windows.extensions.6.0.0.nupkg.sha512",
     "/Users/berkayergun/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/Users/berkayergun/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
+    "/Users/berkayergun/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/microsoft.netcore.app.host.osx-arm64/7.0.14/microsoft.netcore.app.host.osx-arm64.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }

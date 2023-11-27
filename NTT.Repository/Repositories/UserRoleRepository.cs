@@ -7,32 +7,16 @@ using NTT.Repository.Context;
 using NTT.Service.Models.UserRoles;
 
 namespace NTT.Repository.Repositories;
-
-public class UserRoleRepository : IUserRoleRepository
+public class UserRoleRepository :GenericRepository<UserRole>,IUserRoleRepository
 {
     private readonly AppDbContext _dbContext;
     private readonly IUnitOfWork _unitOfWork;
 
-    public UserRoleRepository(AppDbContext dbContext, IUnitOfWork unitOfWork)
+    public UserRoleRepository(AppDbContext dbContext, IUnitOfWork unitOfWork)  : base(dbContext)
     {
         _dbContext = dbContext;
         _unitOfWork = unitOfWork;
     }
-    
-    public async Task<List<UserRoleResponse>> GetUserRolesByUserIdAsync(UserRoleGetByIdRequest request)
-    {
-        var userRoles = await _dbContext.UserRoles
-            .Where(x => x.UserId == request.UserId)
-            .ToListAsync();
-        return userRoles.Select(x => new UserRoleResponse
-        {
-            Id = x.Id,
-            UserId = x.UserId,
-            RoleType = x.RoleType,
-        }).ToList();
-    }
-    
-
     public async Task<UserRoleResponse> AddUserRoleAsync(UserRoleCreateRequest request)
     {
         var userRole = new UserRole
@@ -41,7 +25,9 @@ public class UserRoleRepository : IUserRoleRepository
             RoleType = request.RoleType,
         };
         EntityEntry<UserRole> userRoleEntry = await _dbContext.UserRoles.AddAsync(userRole);
-        await _dbContext.SaveChangesAsync();
+
+        await _unitOfWork.CommitAsync();
+        
         return new UserRoleResponse
         {
             Id = userRoleEntry.Entity.Id,
@@ -49,5 +35,25 @@ public class UserRoleRepository : IUserRoleRepository
             RoleType = userRoleEntry.Entity.RoleType,
         };
     }
+    
+    /*public async Task<List<UserRoleResponse>> GetUserRolesByUserIdAsync(UserRoleGetByIdRequest request)
+   {
+       return  WhereWithSelect(x => x.UserId == request.UserId, x => new UserRoleResponse
+       {
+           Id = x.Id,
+           UserId = x.UserId,
+           RoleType = x.RoleType,
+       }).Result;
+
+       return await _dbContext.UserRoles
+           .Where(x => x.UserId == request.UserId)
+           .Select(x => new UserRoleResponse
+           {
+               Id = x.Id,
+               UserId = x.UserId,
+               RoleType = x.RoleType,
+           }).ToListAsync();
+   }
+   */
 
 }

@@ -18,7 +18,13 @@ public class UserRoleService : IUserRoleService
         UserRoleGetByIdRequestValidator validator = new();
         await validator.ValidateAsync(request);
         
-        return await _userRoleRepository.GetUserRolesByUserIdAsync(request);
+        return  _userRoleRepository.WhereWithSelect(x => x.UserId == request.UserId, x => new UserRoleResponse
+        {
+            Id = x.Id,
+            UserId = x.UserId,
+            RoleType = x.RoleType,
+        }).Result;
+        
     }
 
     public async Task<UserRoleResponse> AddUserRoleAsync(UserRoleCreateRequest request)
@@ -29,16 +35,18 @@ public class UserRoleService : IUserRoleService
         
         var userRole = await _userRoleRepository.AddUserRoleAsync(request);
 
-        var userRoleResponse = new UserRoleResponse
+        return new UserRoleResponse
         {
             Id = userRole.Id,
             UserId = userRole.UserId,
             RoleType = userRole.RoleType,
-            // Diğer özellikleri ekleyin
         };
 
-        return userRoleResponse;
+        
     }
 
+    // Business Logics
+
+ 
     
 }

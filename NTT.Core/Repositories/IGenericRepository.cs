@@ -10,6 +10,7 @@ public interface IGenericRepository<T> where T : class
     IQueryable<T> GetAll();
     
     IQueryable<T> Where(Expression<Func<T, bool>> expression);
+    Task<List<TType>> WhereWithSelect<TType>(Expression<Func<T, bool>> where, Expression<Func<T, TType>> select);
     
     Task AddAsync(T entity);
     

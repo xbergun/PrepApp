@@ -263,3 +263,4 @@
 /Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/FluentValidation.dll
 /Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
 /Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.API/obj/Debug/net7.0/NTT.API.sourcelink.json

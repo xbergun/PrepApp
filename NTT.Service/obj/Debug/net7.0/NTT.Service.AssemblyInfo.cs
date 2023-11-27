@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NTT.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23a817730d3e9e2eaecc97e1d5fd58449961c294")]
 [assembly: System.Reflection.AssemblyProductAttribute("NTT.Service")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NTT.Service")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -15,3 +15,4 @@
 /Users/berkayergun/RiderProjects/PrepApp/NTT.Service/obj/Debug/net7.0/refint/NTT.Service.dll
 /Users/berkayergun/RiderProjects/PrepApp/NTT.Service/obj/Debug/net7.0/NTT.Service.pdb
 /Users/berkayergun/RiderProjects/PrepApp/NTT.Service/obj/Debug/net7.0/ref/NTT.Service.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Service/obj/Debug/net7.0/NTT.Service.sourcelink.json

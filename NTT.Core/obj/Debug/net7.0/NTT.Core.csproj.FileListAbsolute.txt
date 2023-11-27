@@ -10,3 +10,4 @@
 /Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/refint/NTT.Core.dll
 /Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.pdb
 /Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/ref/NTT.Core.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/obj/Debug/net7.0/NTT.Core.sourcelink.json

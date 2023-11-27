@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "87894uAwRcYHyP4Y4AR9xYAXa0LzWkDAVEEdn9Jcwk9Ta+XCoLEhQ716hA7/aWj3j1d1Thcb5twoTQPckUq0JQ==",
+  "dgSpecHash": "j3LpIjjBxpnhUi4ZpfP9SNSxqQ+PtP4dTwoTgqNradV0lLol9HioB6HndQrbNU5jJP4c+/YCxJUcGcL2JwQrEA==",
   "success": true,
   "projectFilePath": "/Users/berkayergun/RiderProjects/PrepApp/NTT.Core/NTT.Core.csproj",
   "expectedPackageFiles": [
-    "/Users/berkayergun/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512"
+    "/Users/berkayergun/.nuget/packages/fluentvalidation/11.5.1/fluentvalidation.11.5.1.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/microsoft.netcore.app.ref/7.0.14/microsoft.netcore.app.ref.7.0.14.nupkg.sha512",
+    "/Users/berkayergun/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.14/microsoft.aspnetcore.app.ref.7.0.14.nupkg.sha512"
   ],
   "logs": []
 }
