@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NTT.API.Controllers.Base;
 using NTT.Core.DTOs.Custom;
@@ -15,7 +16,6 @@ namespace NTT.API.Controllers
         {
             _userService = userService;
         }
-
 
         [HttpGet]
         public async Task<IActionResult> GetAll()

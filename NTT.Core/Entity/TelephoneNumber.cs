@@ -8,5 +8,5 @@ public class TelephoneNumber : BaseEntity
  
     public int UserId { get; set; } // Foreign Key
     // Navigation Properties
-    public User User { get; set; } = null!;
+    public ApplicationUser ApplicationUser { get; set; } = null!;
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NTT.Core.Entity;
 using NTT.Core.Repositories;
@@ -9,16 +10,19 @@ namespace NTT.Service.Services;
 
 public class UserService : IUserService
 {
-    private readonly IGenericRepository<User> _repository;
+    private readonly IGenericRepository<ApplicationUser> _repository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly RoleManager<ApplicationRole> _roleManager;
 
-    public UserService(IGenericRepository<User> repository, IUnitOfWork unitOfWork)
+    public UserService(IGenericRepository<ApplicationUser> repository, IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
+        _userManager = userManager;
+        _roleManager = roleManager;
     }
-
-
+    
     public async Task<UserResponse> UpdateAsync(UserUpdateRequest request)
     {
         //TODO: AUTH VALidation
@@ -30,7 +34,7 @@ public class UserService : IUserService
         
         user.FirstName = request.FirstName;
         user.LastName = request.LastName;
-        user.Username = request.Username;
+        user.UserName = request.Username;
         user.Email = request.Email;
         user.TcNo = request.TcNo;
 
@@ -62,11 +66,35 @@ public class UserService : IUserService
         await validator.ValidateAsync(request);
         
         var user = request.ToEntity();
+        
+        var result = await _userManager.CreateAsync(user, request.Password);
 
-        await _repository.AddAsync(user);
+        if (result?.Succeeded != true)
+        {
+            throw new Exception("Kullanıcı oluşturulamadı");
+        }
+        
+        var isCheckRole = await _roleManager.RoleExistsAsync("Admin");
 
-        await _unitOfWork.CommitAsync();
+        if (!isCheckRole)
+        {
+            var role = new ApplicationRole();
+            
+            role.Name = "Admin";
+            
+            await _roleManager.CreateAsync(role);
 
+        }
+        
+        var roleResult = await _userManager.AddToRoleAsync(user, "Admin");
+        
+        if (roleResult?.Succeeded != true)
+        {
+            throw new Exception("role not created");
+        }
+        
+        
+        
         return new UserResponse(user);
     }
 
@@ -77,7 +105,7 @@ public class UserService : IUserService
                 Id = x.Id,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
-                Username = x.Username,
+                UserName = x.UserName,
                 TcNo = x.TcNo,
             })
             .ToListAsync();
@@ -93,11 +121,6 @@ public class UserService : IUserService
         return new UserResponse(user);
     }
     
-    
-    private async Task ValidateBusinessCreateUser()
-    {
-        
-    }
     
     
 }

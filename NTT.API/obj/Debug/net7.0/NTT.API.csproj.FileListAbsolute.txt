@@ -264,3 +264,10 @@
 /Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/FluentValidation.AspNetCore.dll
 /Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/FluentValidation.DependencyInjectionExtensions.dll
 /Users/berkayergun/RiderProjects/PrepApp/NTT.API/obj/Debug/net7.0/NTT.API.sourcelink.json
+/Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/berkayergun/RiderProjects/PrepApp/NTT.API/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -4,7 +4,7 @@ namespace NTT.Service.Models.Users;
 
 public class UserDeleteRequest
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 }
 
 public class UserDeleteRequestValidator : AbstractValidator<UserDeleteRequest>
@@ -12,6 +12,6 @@ public class UserDeleteRequestValidator : AbstractValidator<UserDeleteRequest>
     public UserDeleteRequestValidator()
     {
         RuleFor(user => user.Id)
-            .NotEmpty().WithMessage("Id is required").GreaterThan(0);
+            .NotEmpty().WithMessage("Id is required");
     }
 }

@@ -2,7 +2,7 @@ using NTT.Core.Entity;
 
 namespace NTT.Core.Repositories;
 
-public interface IUserWithTelephoneNumbersRepository : IGenericRepository<User>
+public interface IUserWithTelephoneNumbersRepository : IGenericRepository<ApplicationUser>
 {
-    Task<List<User>> GetUsersWithTelephoneNumbers();
+    Task<List<ApplicationUser>> GetUsersWithTelephoneNumbers();
 }
