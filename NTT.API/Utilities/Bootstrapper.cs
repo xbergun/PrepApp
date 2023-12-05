@@ -1,9 +1,11 @@
 using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NTT.Core.Configuration;
+using NTT.Core.Entity;
 using NTT.Core.Repositories;
 using NTT.Core.UnitOfWorks;
 using NTT.Repository.Context;
@@ -23,6 +25,7 @@ public static class Bootstrapper
         services.AddDbContext(configuration);
         services.Configure(configuration);
         services.AddAuthentication(configuration);
+
     }
     
     private static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
@@ -35,19 +38,14 @@ public static class Bootstrapper
         );
         return services;
     }
-    
+    //TODO: scoped, transient, singleton
     private static IServiceCollection AddServiceCollections(this IServiceCollection services)
     {
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-        services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<ITokenService, TokenService>();
-        //services.AddScoped<IUserRoleRepository, UserRoleRepository>();
-        //services.AddScoped<IUserWithTelephoneNumbersRepository, UserWithTelephoneNumbersRepository>();
-        services.AddScoped<IUserService, UserService>();
-        
-        //services.AddScoped<IUserRoleService, UserRoleService>();
-
+        services.AddTransient<IUnitOfWork, UnitOfWork>();
+        services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        services.AddTransient<IAuthService, AuthService>();
+        services.AddTransient<ITokenService, TokenService>();
+        services.AddTransient<IUserService, UserService>();
         return services;
     }
 
@@ -60,6 +58,8 @@ public static class Bootstrapper
     
     private static IServiceCollection AddAuthentication(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddIdentity<ApplicationUser,ApplicationRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+            
         services.AddAuthentication(x =>
         {
             x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

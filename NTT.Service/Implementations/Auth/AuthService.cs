@@ -12,15 +12,14 @@ public class AuthService : IAuthService
     private readonly ITokenService _tokenService;
     private  readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly  RoleManager<IdentityRole> _roleManager;
 
-    public AuthService(IConfiguration configuration, ITokenService tokenService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+    public AuthService(IConfiguration configuration, ITokenService tokenService, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<ApplicationRole> roleManager)
     {
         _configuration = configuration;
         _tokenService = tokenService;
         _userManager = userManager;
         _signInManager = signInManager;
-        _roleManager = roleManager;
+        
     }
 
     public async Task<TokenModel> LoginAsync(LoginModel model)
