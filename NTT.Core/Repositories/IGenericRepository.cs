@@ -5,7 +5,7 @@ namespace NTT.Core.Repositories;
 //Veritabanı işlemleri için implemente edilecek interface. Ancak veritabanına erişim sağlamaz.
 public interface IGenericRepository<T> where T : class
 {
-    Task<T> GetByIdAsync(int id);
+    Task<T> GetByIdAsync(Guid id);
     
     IQueryable<T> GetAll();
     

@@ -1,16 +1,12 @@
+using Microsoft.OpenApi.Models;
 using NTT.API.Utilities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure();
+builder.Services.AddBootstrapper(builder.Configuration);
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddServiceCollections();
-
-//builder.Services.AddAutoMapper(typeof(MapProfile));
-
-builder.Services.AddDbContext(builder.Configuration);
 
 var app = builder.Build();
 
@@ -23,8 +19,23 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+// TODO:  AspnetRoles, daha sonra userRole
+
+//TODO: user managersiz sadece ef core ile yeni bir model + entity oluşturup onu kullanabilirsin.
+//TODO: Microservices,
+//TODO: N-Layer => Generic repository pattern + UnitOfWork pattern
+//TODO: N-Layer => Generic repository pattern + abstract factory pattern
+//TODO: N-Layer => Generic repository pattern + dao pattern
+//TODO: N-Layer => Mediator pattern 
+//TODO: N-Layer => CQRS pattern
+//TODO: Singleton pattern
+//TODO: SOLID + Clean Architecture
+
+//TODO: Generic repository için reflection.

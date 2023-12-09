@@ -1,3 +1,4 @@
+/*
 using NTT.Core.Repositories;
 using NTT.Core.Services;
 using NTT.Service.Models.UserRoles;
@@ -18,11 +19,11 @@ public class UserRoleService : IUserRoleService
         UserRoleGetByIdRequestValidator validator = new();
         await validator.ValidateAsync(request);
         
-        return  _userRoleRepository.WhereWithSelect(x => x.UserId == request.UserId, x => new UserRoleResponse
+        return  _userRoleRepository.WhereWithSelect(x => Equals(x.UserId, request.UserId), x => new UserRoleResponse
         {
-            Id = x.Id,
+            Id = x.RoleId,
             UserId = x.UserId,
-            RoleType = x.RoleType,
+            RoleType = x.RoleId.ToString(),
         }).Result;
         
     }
@@ -50,3 +51,4 @@ public class UserRoleService : IUserRoleService
  
     
 }
+*/

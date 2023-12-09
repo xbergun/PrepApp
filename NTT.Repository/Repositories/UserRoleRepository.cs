@@ -1,3 +1,4 @@
+/*
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using NTT.Core.Entity;
@@ -7,7 +8,7 @@ using NTT.Repository.Context;
 using NTT.Service.Models.UserRoles;
 
 namespace NTT.Repository.Repositories;
-public class UserRoleRepository :GenericRepository<UserRole>,IUserRoleRepository
+public class UserRoleRepository :GenericRepository<ApplicationUserRole>,IUserRoleRepository
 {
     private readonly AppDbContext _dbContext;
     private readonly IUnitOfWork _unitOfWork;
@@ -19,12 +20,12 @@ public class UserRoleRepository :GenericRepository<UserRole>,IUserRoleRepository
     }
     public async Task<UserRoleResponse> AddUserRoleAsync(UserRoleCreateRequest request)
     {
-        var userRole = new UserRole
+        var userRole = new ApplicationUserRole
         {
             UserId = request.UserId,
             RoleType = request.RoleType,
         };
-        EntityEntry<UserRole> userRoleEntry = await _dbContext.UserRoles.AddAsync(userRole);
+        EntityEntry<ApplicationUserRole> userRoleEntry = await _dbContext.UserRoles.AddAsync(userRole);
 
         await _unitOfWork.CommitAsync();
         
@@ -54,6 +55,7 @@ public class UserRoleRepository :GenericRepository<UserRole>,IUserRoleRepository
                RoleType = x.RoleType,
            }).ToListAsync();
    }
-   */
 
 }
+
+   */

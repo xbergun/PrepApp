@@ -4,7 +4,7 @@ namespace NTT.Service.Models.Users;
 
 public class UserGetByIdRequest
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 }
 
 public class UserGetByIdRequestValidator : AbstractValidator<UserGetByIdRequest>
@@ -12,6 +12,6 @@ public class UserGetByIdRequestValidator : AbstractValidator<UserGetByIdRequest>
     public UserGetByIdRequestValidator()
     {
         RuleFor(user => user.Id)
-            .NotEmpty().WithMessage("Id is required").GreaterThan(0);
+            .NotEmpty().WithMessage("Id is required");
     }
 }

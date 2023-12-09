@@ -5,7 +5,7 @@ namespace NTT.Service.Models.Users;
 
 public class UserUpdateRequest
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
     public string FirstName { get; set; }
     
@@ -23,7 +23,7 @@ public class UserUpdateRequestValidator : AbstractValidator<UserUpdateRequest>
     public UserUpdateRequestValidator()
     {
         RuleFor(user => user.Id)
-            .NotEmpty().WithMessage("Id is required").GreaterThan(0);
+            .NotEmpty().WithMessage("Id is required");
 
         RuleFor(user => user.FirstName)
             .NotEmpty().WithMessage("First name is required")

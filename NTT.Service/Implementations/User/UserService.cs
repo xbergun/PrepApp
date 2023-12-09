@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NTT.Core.Entity;
 using NTT.Core.Repositories;
@@ -9,19 +10,22 @@ namespace NTT.Service.Services;
 
 public class UserService : IUserService
 {
-    private readonly IGenericRepository<User> _repository;
+    private readonly IGenericRepository<ApplicationUser> _repository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly RoleManager<ApplicationRole> _roleManager;
 
-    public UserService(IGenericRepository<User> repository, IUnitOfWork unitOfWork)
+    public UserService(IGenericRepository<ApplicationUser> repository, IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
+        _userManager = userManager;
+        _roleManager = roleManager;
     }
-
-
+    
+    //TODO: update usermanager
     public async Task<UserResponse> UpdateAsync(UserUpdateRequest request)
     {
-        //TODO: AUTH VALidation
         UserUpdateRequestValidator validator = new();
         await validator.ValidateAsync(request);
         //TODO: Business Validation
@@ -30,7 +34,7 @@ public class UserService : IUserService
         
         user.FirstName = request.FirstName;
         user.LastName = request.LastName;
-        user.Username = request.Username;
+        user.UserName = request.Username;
         user.Email = request.Email;
         user.TcNo = request.TcNo;
 
@@ -41,6 +45,7 @@ public class UserService : IUserService
         return new UserResponse(user);
     }
 
+    //TODO: update usermanager
     public async Task<bool> DeleteAsync(UserDeleteRequest request)
     {
         UserDeleteRequestValidator validator = new();
@@ -62,11 +67,27 @@ public class UserService : IUserService
         await validator.ValidateAsync(request);
         
         var user = request.ToEntity();
-
-        await _repository.AddAsync(user);
-
-        await _unitOfWork.CommitAsync();
-
+        
+        var result = await _userManager.CreateAsync(user, request.Password);
+        if (result?.Succeeded != true)
+        {
+            result.Errors.ToList().ForEach(x => throw new Exception(x.Description));
+        }
+        
+        var isCheckRole = await _roleManager.RoleExistsAsync("Admin");
+        if (!isCheckRole)
+        {
+            var role = new ApplicationRole();
+            role.Name = "Admin";
+            await _roleManager.CreateAsync(role);
+        }
+        
+        var roleResult = await _userManager.AddToRoleAsync(user, "Admin");
+        if (roleResult?.Succeeded != true)
+        {
+            throw new Exception("role not created");
+        }
+        
         return new UserResponse(user);
     }
 
@@ -77,7 +98,8 @@ public class UserService : IUserService
                 Id = x.Id,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
-                Username = x.Username,
+                Email = x.Email,
+                UserName = x.UserName,
                 TcNo = x.TcNo,
             })
             .ToListAsync();
@@ -91,13 +113,14 @@ public class UserService : IUserService
         
         var user = await _repository.GetByIdAsync(request.Id);
         return new UserResponse(user);
-    }
-    
-    
-    private async Task ValidateBusinessCreateUser()
+    } 
+    /*
+     reflection
+    public async string X(ApplicationUser user, string propName)
     {
-        
+        return user.FirstName;
     }
+    */
     
     
 }

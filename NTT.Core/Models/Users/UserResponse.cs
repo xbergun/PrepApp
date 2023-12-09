@@ -8,26 +8,27 @@ public class UserResponse
     {
         
     }
-    public UserResponse(User user)
+    public UserResponse(ApplicationUser applicationUser)
     {
-        if (user == null)
+        if (applicationUser == null)
         {
             return;
         }
 
-        Id = user.Id;
-        FirstName = user.FirstName;
-        LastName = user.LastName;
-        Username = user.Username;
-        Email = user.Email;
-        TcNo = user.TcNo;
+        Id = applicationUser.Id;
+        FirstName = applicationUser.FirstName;
+        LastName = applicationUser.LastName;
+        UserName = applicationUser.UserName;
+        Email = applicationUser.Email;
+        TcNo = applicationUser.TcNo;
+        PhoneNumber = applicationUser.PhoneNumber;
+        
     }
-    
-
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
-    public string Username { get; set; } = null!;
+    public string UserName { get; set; } = null!;
     public string Email { get; set; } = null!;
     public string TcNo { get; set; } = null!;
+    public string? PhoneNumber { get; set; } = null!;
 }

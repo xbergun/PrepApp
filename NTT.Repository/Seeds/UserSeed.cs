@@ -1,15 +1,16 @@
+/*
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NTT.Core.Entity;
 
 namespace NTT.Repository.Seeds;
 
-public class UserSeed : IEntityTypeConfiguration<User>
+public class UserSeed : IEntityTypeConfiguration<ApplicationUser>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
         builder.HasData(
-            new User
+            new ApplicationUser
             {
                 Id = 1, 
                 FirstName = "John", 
@@ -18,7 +19,7 @@ public class UserSeed : IEntityTypeConfiguration<User>
                 Email = "johndoe@gmail.com",
                 TcNo = "12345678901",
             },
-        new User
+        new ApplicationUser
             {
                 Id = 2, 
                 FirstName = "George", 
@@ -27,7 +28,7 @@ public class UserSeed : IEntityTypeConfiguration<User>
                 Email = "georgebush@gmail.com",
                 TcNo = "55345678901",
             },
-        new User    
+        new ApplicationUser    
             {
                 Id = 3, 
                 FirstName = "Michael", 
@@ -41,3 +42,4 @@ public class UserSeed : IEntityTypeConfiguration<User>
         );
     }
 }
+*/

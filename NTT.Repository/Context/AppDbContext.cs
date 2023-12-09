@@ -1,29 +1,28 @@
 using System.Reflection;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NTT.Core.Entity;
-using NTT.Repository.Context.Configuration;
-using NTT.Repository.Seeds;
+using NTT.Core.Entity.Independent;
 
 namespace NTT.Repository.Context;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid,
+    IdentityUserClaim<Guid>, ApplicationUserRole, IdentityUserLogin<Guid>,
+    IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
-    
-    public DbSet<User?> Users { get; set; }
-    public DbSet<UserRole> UserRoles { get; set; }
-    public DbSet<TelephoneNumber> TelephoneNumbers { get; set; }
-    
+
+    public virtual DbSet<ApplicationRefreshToken> ApplicationRefreshTokens { get; set; } = null!;
+
+    public virtual DbSet<Blog> Blogs { get; set; } = null!;
+    public virtual DbSet<Post> Posts { get; set; } = null!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
-        modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
-        modelBuilder.ApplyConfiguration(new TelephoneNumberConfiguration());
-        modelBuilder.ApplyConfiguration(new UserSeed());
-        modelBuilder.ApplyConfiguration(new UserRoleSeed());
-        modelBuilder.ApplyConfiguration(new TelephoneNumberSeed());
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-    
 }
