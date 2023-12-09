@@ -23,9 +23,9 @@ public class UserService : IUserService
         _roleManager = roleManager;
     }
     
+    //TODO: update usermanager
     public async Task<UserResponse> UpdateAsync(UserUpdateRequest request)
     {
-        //TODO: AUTH VALidation
         UserUpdateRequestValidator validator = new();
         await validator.ValidateAsync(request);
         //TODO: Business Validation
@@ -45,6 +45,7 @@ public class UserService : IUserService
         return new UserResponse(user);
     }
 
+    //TODO: update usermanager
     public async Task<bool> DeleteAsync(UserDeleteRequest request)
     {
         UserDeleteRequestValidator validator = new();
@@ -68,32 +69,24 @@ public class UserService : IUserService
         var user = request.ToEntity();
         
         var result = await _userManager.CreateAsync(user, request.Password);
-
         if (result?.Succeeded != true)
         {
-            throw new Exception("Kullanıcı oluşturulamadı");
+            result.Errors.ToList().ForEach(x => throw new Exception(x.Description));
         }
         
         var isCheckRole = await _roleManager.RoleExistsAsync("Admin");
-
         if (!isCheckRole)
         {
             var role = new ApplicationRole();
-            
             role.Name = "Admin";
-            
             await _roleManager.CreateAsync(role);
-
         }
         
         var roleResult = await _userManager.AddToRoleAsync(user, "Admin");
-        
         if (roleResult?.Succeeded != true)
         {
             throw new Exception("role not created");
         }
-        
-        
         
         return new UserResponse(user);
     }
@@ -105,6 +98,7 @@ public class UserService : IUserService
                 Id = x.Id,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
+                Email = x.Email,
                 UserName = x.UserName,
                 TcNo = x.TcNo,
             })
@@ -119,8 +113,14 @@ public class UserService : IUserService
         
         var user = await _repository.GetByIdAsync(request.Id);
         return new UserResponse(user);
+    } 
+    /*
+     reflection
+    public async string X(ApplicationUser user, string propName)
+    {
+        return user.FirstName;
     }
-    
+    */
     
     
 }

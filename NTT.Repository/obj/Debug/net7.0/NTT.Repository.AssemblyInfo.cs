@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NTT.Repository")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e862af3c28992cbf2feb6d1c7cacaa243ecc82f")]
 [assembly: System.Reflection.AssemblyProductAttribute("NTT.Repository")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NTT.Repository")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

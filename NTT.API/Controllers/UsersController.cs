@@ -16,7 +16,7 @@ namespace NTT.API.Controllers
         {
             _userService = userService;
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -24,7 +24,7 @@ namespace NTT.API.Controllers
             
             return CreateActionResult(CustomResponseModel<List<UserResponse>>.Success(200, users));
         }
-        
+        [Authorize]
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetById([FromRoute]UserGetByIdRequest request)
         {
@@ -32,14 +32,14 @@ namespace NTT.API.Controllers
 
             return CreateActionResult(CustomResponseModel<UserResponse>.Success(200, user));
         }
-        
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddUser(UserCreateRequest request)
         {
             var newUser = await _userService.CreateAsync(request);
             return CreateActionResult(CustomResponseModel<UserResponse>.Success(201, newUser));
         }
-
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> Update(UserUpdateRequest request)
         {
@@ -48,6 +48,7 @@ namespace NTT.API.Controllers
             return CreateActionResult(CustomResponseModel<UserResponse>.Success(200, newUser));
         }
         
+        [Authorize]
         [HttpDelete]
         public async Task<IActionResult> DeleteUser(UserDeleteRequest request)
         { 

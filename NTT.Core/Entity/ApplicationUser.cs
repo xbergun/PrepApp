@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Identity;
-using NTT.Core.Entity.Base;
 namespace NTT.Core.Entity;
 public class ApplicationUser : IdentityUser<Guid>
 {

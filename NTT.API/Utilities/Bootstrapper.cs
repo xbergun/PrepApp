@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using NTT.Core.Configuration;
 using NTT.Core.Entity;
 using NTT.Core.Repositories;
@@ -12,6 +13,7 @@ using NTT.Repository.Context;
 using NTT.Repository.Repositories;
 using NTT.Repository.UnitOfWorks;
 using NTT.Service.Abstractions;
+using NTT.Service.Implementations.Independent;
 using NTT.Service.Services;
 
 namespace NTT.API.Utilities;
@@ -25,7 +27,7 @@ public static class Bootstrapper
         services.AddDbContext(configuration);
         services.Configure(configuration);
         services.AddAuthentication(configuration);
-
+        services.AddSwaggerGen();
     }
     
     private static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
@@ -46,6 +48,8 @@ public static class Bootstrapper
         services.AddTransient<IAuthService, AuthService>();
         services.AddTransient<ITokenService, TokenService>();
         services.AddTransient<IUserService, UserService>();
+        services.AddTransient<IBlogService, BlogService>();
+        services.AddTransient<IPostService, PostService>();
         return services;
     }
 
@@ -53,6 +57,15 @@ public static class Bootstrapper
     {
         services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         services.Configure<JwtConfig>(configuration.GetSection("Token"));
+        services.Configure<IdentityOptions>(opt =>
+        {
+            opt.Password.RequireDigit = false;
+            opt.Password.RequireLowercase = false;
+            opt.Password.RequireUppercase = false;
+            opt.Password.RequireNonAlphanumeric = false;
+            opt.Password.RequiredLength = 3;
+        });
+        
         return services;
     } 
     
@@ -81,6 +94,40 @@ public static class Bootstrapper
         });
         return services;
     }
+    
+    private static IServiceCollection AddSwaggerGen(this IServiceCollection services)
+    {
+        services.AddSwaggerGen(opt =>
+        {
+            opt.SwaggerDoc("v1", new OpenApiInfo{ Title = "MyAPI", Version = "v1" });
+            opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Please enter token",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "bearer"
+            });
+
+            opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                        }
+                    },
+                    new string[]{}
+                }
+            });
+        });
+        return services;
+    }
+        
     
     
     /*

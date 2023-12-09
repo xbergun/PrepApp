@@ -59,8 +59,10 @@ public class TokenService : ITokenService
         JwtSecurityTokenHandler jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
     
         tokenModel.AccessToken = jwtSecurityTokenHandler.WriteToken(jwtSecurityToken);
-    
-        CreateRefreshToken(configuration, tokenModel);
+        tokenModel.UserId = user.Id;
+        
+        //TODO: Will be done later
+        //CreateRefreshToken(configuration, tokenModel);
     
         return tokenModel;
     }

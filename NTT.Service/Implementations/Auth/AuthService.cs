@@ -28,10 +28,15 @@ public class AuthService : IAuthService
         
         if (user == null)
         {
-            throw new Exception("Kullanıcı bulunamadı");
+            throw new Exception("User not found");
         }
         
         var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, true);
+        
+        if (!result.Succeeded)
+        {
+            throw new Exception("Password is wrong");
+        }
         
         var token = await _tokenService.CreateToken(_configuration,model);
 

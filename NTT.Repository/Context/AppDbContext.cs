@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using NTT.Core.Entity;
-using NTT.Repository.Seeds;
+using NTT.Core.Entity.Independent;
 
 namespace NTT.Repository.Context;
 
@@ -14,19 +14,15 @@ public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, 
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
+
     public virtual DbSet<ApplicationRefreshToken> ApplicationRefreshTokens { get; set; } = null!;
-    public virtual DbSet<TelephoneNumber> TelephoneNumbers { get; set; } = null!;
-    
-    /*
+
+    public virtual DbSet<Blog> Blogs { get; set; } = null!;
+    public virtual DbSet<Post> Posts { get; set; } = null!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
-        modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
-        modelBuilder.ApplyConfiguration(new TelephoneNumberConfiguration());
-        modelBuilder.ApplyConfiguration(new UserSeed());
-        modelBuilder.ApplyConfiguration(new UserRoleSeed());
-        modelBuilder.ApplyConfiguration(new TelephoneNumberSeed());
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
-    */
 }
